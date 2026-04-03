@@ -6,12 +6,12 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Contact - UpConstruction Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Register - Freelancer House Wife Portal</title>
+  <meta name="description" content="Register as a Housewife Freelancer or Client">
+  <meta name="keywords" content="register, housewife, freelancer, signup">
 
   <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/icon.png' %}" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -20,8 +20,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
 
 </head>
 
@@ -32,19 +39,19 @@
   <main class="main">
 
     <!-- Page Title -->
-    <div class="page-title dark-background" style="background-image: url(assets/img/page-title-bg.jpg);">
+    <div class="page-title dark-background" style="background-image: url({% static 'assets/img/page-title-bg.jpg' %});">
       <div class="container position-relative">
-        <h1>Contact</h1>
+        <h1>Create an Account</h1>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Contact</li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li class="current">Register</li>
           </ol>
         </nav>
       </div>
     </div><!-- End Page Title -->
 
-    <!-- Contact Section -->
+    <!-- Registration Section -->
     <section id="contact" class="contact section">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -52,108 +59,188 @@
         <div class="row gy-4">
 
           <div class="col-lg-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
-              <i class="bi bi-geo-alt"></i>
-              <h3>Address</h3>
-              <p>A108 Adam Street, New York, NY 535022</p>
+            <div class="info-item d-flex flex-column justify-content-center align-items-center text-center" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-person-workspace"></i>
+              <h3>Register as Housewife</h3>
+              <p>Showcase your skills, find work, and earn from home</p>
+              <small class="text-muted mt-2">✓ Cooking ✓ Cleaning ✓ Tutoring ✓ Beauty ✓ Craft & more</small>
             </div>
-          </div><!-- End Info Item -->
+          </div>
 
-          <div class="col-lg-3 col-md-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
-              <i class="bi bi-telephone"></i>
-              <h3>Call Us</h3>
-              <p>+1 5589 55488 55</p>
+          <div class="col-lg-6">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center text-center" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-briefcase"></i>
+              <h3>Register as Client</h3>
+              <p>Post jobs, hire skilled housewives, and get quality services</p>
+              <small class="text-muted mt-2">Find trusted professionals near you</small>
             </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-lg-3 col-md-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
-              <i class="bi bi-envelope"></i>
-              <h3>Email Us</h3>
-              <p>info@example.com</p>
-            </div>
-          </div><!-- End Info Item -->
+          </div>
 
         </div>
 
         <div class="row gy-4 mt-1">
+          
+          <!-- Left Side - Illustration -->
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div><!-- End Google Maps -->
+            <div class="text-center">
+              <img src="{% static 'assets/img/register.jpeg' %}" style="max-height: 350px; width: auto;" alt="Register Illustration" />
+            </div>
+            <div class="mt-4 text-center">
+              <h5>Already have an account?</h5>
+              <p>Login to access your dashboard and manage your work</p>
+              <a href="{% url 'login' %}" class="btn btn-primary">Login Here →</a>
+            </div>
+          </div>
 
-          <div class="col-lg-6">
+          <!-- Right Side - Registration Form -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
            
-            <center>
+            <div class="card shadow-lg border-0 rounded-4">
+              <div class="card-body p-5">
 
-              {% for x in messages %}
+                <h3 class="text-center mb-4">Create Your Account</h3>
+                <p class="text-center text-muted mb-4">Join our community of freelancers and clients</p>
 
-              <h5> 
-                  
-              <div id="myAlert" class="alert alert-warning alert-dismissible fade show" role="alert">
-                  <strong style="color:green;">{{x}}</strong>
-                  <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              
-              <script>
-                  // Function to dismiss the alert after a specified duration
+                <!-- Messages -->
+                {% for x in messages %}
+                <div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>✅ {{x}}</strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                
+                <script>
                   function dismissAlert() {
-                      var alertDiv = document.getElementById('myAlert');
-                      if (alertDiv) {
-                          alertDiv.classList.add('fade');
-                          setTimeout(function() {
-                              alertDiv.style.display = 'none';
-                          }, 1000); // Change 1000 to the desired duration in milliseconds (e.g., 3000 for 3 seconds)
-                      }
+                    var alertDiv = document.getElementById('myAlert');
+                    if (alertDiv) {
+                      alertDiv.classList.add('fade');
+                      setTimeout(function() {
+                        alertDiv.style.display = 'none';
+                      }, 1000);
+                    }
                   }
-              
-                  // Automatically dismiss the alert after 3 seconds (adjust the time as needed)
-                  setTimeout(dismissAlert, 5000); // 3000 milliseconds = 3 seconds
-              </script>
-              
-                                  
-              </h5>
+                  setTimeout(dismissAlert, 5000);
+                </script>
+                {% endfor %}
 
-              {% endfor %}
+                <form action="{% url 'reg' %}" method="POST" name="registration_form">
+                  {% csrf_token %}
+                  
+                  <!-- User Type Selection -->
+                  <div class="form-group mb-4">
+                    <label class="form-label fw-bold">I want to register as:</label>
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="user_type" id="housewife" value="housewife" checked>
+                          <label class="form-check-label" for="housewife">
+                            <i class="bi bi-person-workspace"></i> Housewife Freelancer
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="user_type" id="client" value="client">
+                          <label class="form-check-label" for="client">
+                            <i class="bi bi-briefcase"></i> Client
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-            </center>
+                  <!-- Full Name -->
+                  <div class="form-group mb-4">
+                    <label class="form-label fw-bold">Full Name</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-person"></i></span>
+                      <input type="text" class="form-control form-control-lg" placeholder="Enter your full name" name="name" required>
+                    </div>
+                  </div>
 
-            <form action="{% url 'reg' %}" method="POST" name="contactus_form">
-              {% csrf_token %}
-      <!-- Cross-Site Request Forgery (CSRF) is an attack that forces authenticated users to submit a request to a Web application against which they are currently authenticated.
-      CSRF Token used to prevent unathorized person could not submit form from your website-->
-              <div class="form-group">
-               <input type="text" class="form-control" placeholder="Your Name" name="name" required>
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Your Email" name="email" required>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Enter Mobile Number" name="phone"  minlength="10"  pattern="[6789][0-9]{9}" maxlength="10" title="Enter a valid 10-digit Indian phone number starting with 6, 7, 8, or 9" required>
-              </div>
-              <div class="form-group">
-                <textarea name="message" id="" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-primary py-3 px-5" name="submit">
-              </div>
-            </form>
+                  <!-- Email -->
+                  <div class="form-group mb-4">
+                    <label class="form-label fw-bold">Email Address</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                      <input type="email" class="form-control form-control-lg" placeholder="Enter your email" name="email" required>
+                    </div>
+                    <small class="text-muted">This will be your username for login</small>
+                  </div>
 
-          </div><!-- End Contact Form -->
+                  <!-- Password -->
+                  <div class="form-group mb-4">
+                    <label class="form-label fw-bold">Password</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                      <input type="password" class="form-control form-control-lg" placeholder="Create a password" name="password" id="password" required>
+                      <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                        <i class="bi bi-eye-slash"></i>
+                      </button>
+                    </div>
+                    <small class="text-muted">Minimum 6 characters</small>
+                  </div>
+
+                  <!-- Confirm Password -->
+                  <div class="form-group mb-4">
+                    <label class="form-label fw-bold">Confirm Password</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                      <input type="password" class="form-control form-control-lg" placeholder="Confirm your password" name="confirm_password" id="confirm_password" required>
+                    </div>
+                  </div>
+
+                  <!-- Phone Number -->
+                  <div class="form-group mb-4">
+                    <label class="form-label fw-bold">Mobile Number</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-phone"></i></span>
+                      <input type="text" class="form-control form-control-lg" placeholder="Enter 10-digit mobile number" name="phone" minlength="10" pattern="[6789][0-9]{9}" maxlength="10" title="Enter a valid 10-digit Indian phone number starting with 6, 7, 8, or 9" required>
+                    </div>
+                  </div>
+
+                  <!-- Message/Skills -->
+                  <div class="form-group mb-4">
+                    <label class="form-label fw-bold">Tell us about yourself</label>
+                    <textarea name="message" id="" cols="30" rows="4" class="form-control" placeholder="For housewives: List your skills (e.g., Cooking, Tutoring). For clients: Describe your requirements" required></textarea>
+                  </div>
+
+                  <!-- Terms Checkbox -->
+                  <div class="form-group mb-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="terms" required>
+                      <label class="form-check-label" for="terms">
+                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Submit Button -->
+                  <div class="form-group text-center">
+                    <input type="submit" value="Register Now" class="btn btn-success btn-lg px-5" name="submit">
+                  </div>
+
+                  <hr class="my-4">
+
+                  <div class="text-center">
+                    <p class="mb-0">Already have an account? <a href="{% url 'login' %}" class="text-decoration-none fw-bold">Login Here</a></p>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+
+          </div><!-- End Registration Form -->
 
         </div>
 
       </div>
 
-    </section><!-- /Contact Section -->
+    </section><!-- /Registration Section -->
 
   </main>
 
-
-    {% include 'footer.html' %}
-
+  {% include 'footer.html' %}
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -162,7 +249,6 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  
   <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
   <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
@@ -174,6 +260,30 @@
 
   <!-- Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <!-- Password Toggle Script -->
+  <script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+    const confirmPassword = document.querySelector('#confirm_password');
+    
+    if (togglePassword) {
+      togglePassword.addEventListener('click', function() {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('bi-eye');
+        this.querySelector('i').classList.toggle('bi-eye-slash');
+      });
+    }
+    
+    // Password match validation on form submit
+    document.querySelector('form').addEventListener('submit', function(e) {
+      if (password.value !== confirmPassword.value) {
+        e.preventDefault();
+        alert('Passwords do not match!');
+      }
+    });
+  </script>
 
 </body>
 

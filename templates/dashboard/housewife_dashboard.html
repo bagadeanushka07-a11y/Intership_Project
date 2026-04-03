@@ -5,32 +5,55 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="keywords"
-      content="housewife freelancer, admin dashboard, freelance portal"
-    />
-    <meta
-      name="description"
-      content="Dashboard for Freelancer House Wife Portal - Manage jobs, applications, and more"
-    />
+    <meta name="keywords" content="housewife dashboard, freelancer portal, earnings" />
+    <meta name="description" content="Dashboard for housewife freelancers to manage jobs, applications, and earnings" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Dashboard - Freelancer House Wife Portal</title>
+    <title>Housewife Dashboard - Freelancer House Wife Portal</title>
     <!-- Favicon icon -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="{% static 'dashboard/assets/images/favicon.png' %}"
-    />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'dashboard/assets/images/favicon.png' %}" />
     <!-- Custom CSS -->
-    <link
-      href="{% static 'dashboard/assets/libs/fullcalendar/dist/fullcalendar.min.css' %}"
-      rel="stylesheet"
-    />
+    <link href="{% static 'dashboard/assets/libs/fullcalendar/dist/fullcalendar.min.css' %}" rel="stylesheet" />
     <link href="{% static 'dashboard/assets/extra-libs/calendar/calendar.css' %}" rel="stylesheet" />
     <link href="{% static 'dashboard/dist/css/style.min.css' %}" rel="stylesheet" />
+    
+    <style>
+      .welcome-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 25px;
+      }
+      .stat-card {
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+      }
+      .stat-card:hover {
+        transform: translateY(-5px);
+      }
+      .job-card {
+        border-radius: 12px;
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+      }
+      .job-card:hover {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+      .status-badge {
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+      }
+      .status-pending { background: #ffc107; color: #000; }
+      .status-accepted { background: #28a745; color: #fff; }
+      .status-rejected { background: #dc3545; color: #fff; }
+      .status-completed { background: #17a2b8; color: #fff; }
+      .earnings-card {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+      }
+    </style>
   </head>
 
   <body>
@@ -42,77 +65,40 @@
       </div>
     </div>
 
-    <div
-      id="main-wrapper"
-      data-layout="vertical"
-      data-navbarbg="skin5"
-      data-sidebartype="full"
-      data-sidebar-position="absolute"
-      data-header-position="absolute"
-      data-boxed-layout="full"
-    >
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+      
       <!-- Topbar header -->
       <header class="topbar" data-navbarbg="skin5">
         <nav class="navbar top-navbar navbar-expand-md navbar-dark">
           <div class="navbar-header" data-logobg="skin5">
-            <a class="navbar-brand" href="{% url 'dashboard' %}">
+            <a class="navbar-brand" href="{% url 'housewife_dashboard' %}">
               <b class="logo-icon ps-2">
-                <img
-                  src="{% static 'dashboard/assets/images/logo-icon.png' %}"
-                  alt="homepage"
-                  class="light-logo"
-                  width="25"
-                />
+                <img src="{% static 'dashboard/assets/images/logo-icon.png' %}" alt="homepage" class="light-logo" width="25" />
               </b>
               <span class="logo-text ms-2">
-                <img
-                  src="{% static 'dashboard/assets/images/logo-text.png' %}"
-                  alt="homepage"
-                  class="light-logo"
-                />
+                <img src="{% static 'dashboard/assets/images/logo-text.png' %}" alt="homepage" class="light-logo" />
               </span>
             </a>
-            <a
-              class="nav-toggler waves-effect waves-light d-block d-md-none"
-              href="javascript:void(0)"
-              ><i class="ti-menu ti-close"></i
-            ></a>
+            <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
           </div>
 
-          <div
-            class="navbar-collapse collapse"
-            id="navbarSupportedContent"
-            data-navbarbg="skin5"
-          >
+          <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
             <ul class="navbar-nav float-start me-auto">
               <li class="nav-item d-none d-lg-block">
-                <a
-                  class="nav-link sidebartoggler waves-effect waves-light"
-                  href="javascript:void(0)"
-                  data-sidebartype="mini-sidebar"
-                  ><i class="mdi mdi-menu font-24"></i
-                ></a>
+                <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
               </li>
             </ul>
 
             <ul class="navbar-nav float-end">
               <!-- Notifications -->
               <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="mdi mdi-bell font-24"></i>
-                  <span class="badge bg-danger rounded-pill notification-badge">3</span>
+                  <span class="badge bg-danger rounded-pill notification-badge">2</span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="#">🔔 New job matching your skills</a></li>
                   <li><a class="dropdown-item" href="#">💬 Message from client</a></li>
-                  <li><a class="dropdown-item" href="#">⭐ You received a 5-star rating</a></li>
                   <li><hr class="dropdown-divider" /></li>
                   <li><a class="dropdown-item" href="#">View all notifications</a></li>
                 </ul>
@@ -120,20 +106,8 @@
 
               <!-- User Profile -->
               <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <img
-                    src="{% static 'dashboard/assets/images/users/default-user.png' %}"
-                    alt="user"
-                    class="rounded-circle"
-                    width="31"
-                  />
+                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="{% static 'dashboard/assets/images/users/default-user.png' %}" alt="user" class="rounded-circle" width="31" />
                   <span class="ms-2">{{ username }}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end user-dd animated">
@@ -157,7 +131,7 @@
           <nav class="sidebar-nav">
             <ul id="sidebarnav" class="pt-4">
               <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'dashboard' %}">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'housewife_dashboard' %}">
                   <i class="mdi mdi-view-dashboard"></i>
                   <span class="hide-menu">Dashboard</span>
                 </a>
@@ -177,13 +151,13 @@
               <li class="sidebar-item">
                 <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#">
                   <i class="mdi mdi-star"></i>
-                  <span class="hide-menu">Reviews & Ratings</span>
+                  <span class="hide-menu">My Reviews</span>
                 </a>
               </li>
               <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'records' %}">
-                  <i class="mdi mdi-chart-bar"></i>
-                  <span class="hide-menu">Enquiry Details</span>
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#">
+                  <i class="mdi mdi-currency-inr"></i>
+                  <span class="hide-menu">Earnings</span>
                 </a>
               </li>
               <li class="sidebar-item">
@@ -209,10 +183,10 @@
         <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Welcome to your Dashboard</h4>
+              <h4 class="page-title">Housewife Dashboard</h4>
               <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();"> 
                 {% if user.is_authenticated %}
-                  <h5>Hello, {{ username }}! 👋 Welcome back to Freelancer House Wife Portal</h5>
+                  <h5>👋 Hello, {{ username }}! Welcome to your Housewife Dashboard</h5>
                 {% endif %}
               </marquee>
             </div>
@@ -221,49 +195,81 @@
 
         <!-- Container fluid -->
         <div class="container-fluid">
+          
+          <!-- Welcome Card -->
+          <div class="welcome-card">
+            <div class="row align-items-center">
+              <div class="col-md-8">
+                <h3 class="text-white mb-2">Welcome back, {{ username }}! 👋</h3>
+                <p class="text-white-50 mb-0">Track your applications, find new jobs, and manage your freelance career</p>
+              </div>
+              <div class="col-md-4 text-end">
+                <a href="{% url 'find_jobs' %}" class="btn btn-light">
+                  <i class="mdi mdi-briefcase-search"></i> Find New Jobs
+                </a>
+              </div>
+            </div>
+          </div>
+
           <!-- Stats Cards -->
           <div class="row">
             <div class="col-md-6 col-lg-3">
-              <div class="card card-hover">
-                <div class="box bg-info text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-briefcase"></i>
-                  </h1>
-                  <h6 class="text-white">Available Jobs</h6>
-                  <h3 class="text-white">{{ my_jobs|default:0 }}</h3>
+              <div class="card stat-card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <h5 class="card-title text-muted">Applications Sent</h5>
+                      <h2 class="mb-0">{{ applied_jobs|length }}</h2>
+                    </div>
+                    <div class="align-self-center">
+                      <i class="mdi mdi-file-document fs-1 text-info"></i>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="col-md-6 col-lg-3">
-              <div class="card card-hover">
-                <div class="box bg-success text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-account-check"></i>
-                  </h1>
-                  <h6 class="text-white">Applications Sent</h6>
-                  <h3 class="text-white">{{ applications|default:0 }}</h3>
+              <div class="card stat-card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <h5 class="card-title text-muted">Completed Jobs</h5>
+                      <h2 class="mb-0">{{ completed_count }}</h2>
+                    </div>
+                    <div class="align-self-center">
+                      <i class="mdi mdi-check-circle fs-1 text-success"></i>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="col-md-6 col-lg-3">
-              <div class="card card-hover">
-                <div class="box bg-warning text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-star"></i>
-                  </h1>
-                  <h6 class="text-white">Rating</h6>
-                  <h3 class="text-white">4.8 ★</h3>
+              <div class="card stat-card earnings-card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <h5 class="card-title text-white">Total Earnings</h5>
+                      <h2 class="mb-0 text-white">₹{{ total_earnings|default:"0" }}</h2>
+                    </div>
+                    <div class="align-self-center">
+                      <i class="mdi mdi-currency-inr fs-1 text-white"></i>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="col-md-6 col-lg-3">
-              <div class="card card-hover">
-                <div class="box bg-danger text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-currency-inr"></i>
-                  </h1>
-                  <h6 class="text-white">Total Earnings</h6>
-                  <h3 class="text-white">₹0</h3>
+              <div class="card stat-card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <h5 class="card-title text-muted">My Rating</h5>
+                      <h2 class="mb-0">4.8 ★</h2>
+                    </div>
+                    <div class="align-self-center">
+                      <i class="mdi mdi-star fs-1 text-warning"></i>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -288,7 +294,7 @@
                     </div>
                     <div class="col-md-4 mb-2">
                       <a href="#" class="btn btn-info btn-lg w-100">
-                        <i class="mdi mdi-message"></i> Messages
+                        <i class="mdi mdi-chart-line"></i> View Analytics
                       </a>
                     </div>
                   </div>
@@ -297,71 +303,82 @@
             </div>
           </div>
 
-          <!-- Recent Jobs Section -->
+          <!-- My Applications Section -->
           <div class="row">
             <div class="col-md-6">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">📋 Recent Job Postings</h4>
+                  <h4 class="card-title">📝 My Applications</h4>
+                  <p class="text-muted">Jobs you have applied for</p>
                 </div>
                 <div class="comment-widgets scrollable" style="height: 400px">
-                  {% if my_jobs %}
-                    {% for job in my_jobs %}
-                    <div class="d-flex flex-row comment-row mt-0">
+                  {% if applied_jobs %}
+                    {% for app in applied_jobs %}
+                    <div class="d-flex flex-row comment-row mt-0 border-bottom p-3">
                       <div class="comment-text w-100">
-                        <h6 class="font-medium">{{ job.title }}</h6>
-                        <span class="mb-2 d-block">{{ job.description|truncatewords:15 }}</span>
+                        <h6 class="font-medium">{{ app.job.title }}</h6>
+                        <span class="mb-2 d-block text-muted small">{{ app.job.description|truncatewords:15 }}</span>
                         <div class="comment-footer">
-                          <span class="text-muted float-end">{{ job.created_at|date:"M d, Y" }}</span>
-                          <span class="badge bg-info">{{ job.category }}</span>
-                          <span class="badge bg-success">{{ job.budget }}</span>
-                          <button class="btn btn-sm btn-outline-primary">View Applications</button>
+                          <span class="text-muted small">Applied: {{ app.applied_at|date:"M d, Y" }}</span>
+                          <span class="float-end">
+                            {% if app.status == 'pending' %}
+                              <span class="status-badge status-pending">⏳ Pending</span>
+                            {% elif app.status == 'accepted' %}
+                              <span class="status-badge status-accepted">✅ Accepted</span>
+                            {% elif app.status == 'rejected' %}
+                              <span class="status-badge status-rejected">❌ Rejected</span>
+                            {% elif app.status == 'completed' %}
+                              <span class="status-badge status-completed">🎉 Completed</span>
+                            {% endif %}
+                          </span>
+                        </div>
+                        <div class="mt-2">
+                          <span class="badge bg-secondary">{{ app.job.budget }}</span>
+                          <span class="badge bg-info">{{ app.job.location }}</span>
                         </div>
                       </div>
                     </div>
                     {% endfor %}
                   {% else %}
                     <div class="text-center p-4">
-                      <p>No jobs posted yet.</p>
-                      <a href="{% url 'post_job' %}" class="btn btn-primary">Post Your First Job</a>
+                      <i class="mdi mdi-file-document-outline fs-1 text-muted"></i>
+                      <p class="mt-2">You haven't applied for any jobs yet.</p>
+                      <a href="{% url 'find_jobs' %}" class="btn btn-primary">Browse Jobs</a>
                     </div>
                   {% endif %}
                 </div>
               </div>
             </div>
 
-            <!-- Applications Section -->
+            <!-- Available Jobs Section -->
             <div class="col-md-6">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">📝 Recent Applications</h4>
+                  <h4 class="card-title">💼 Available Jobs For You</h4>
+                  <p class="text-muted">New opportunities matching your skills</p>
                 </div>
                 <div class="comment-widgets scrollable" style="height: 400px">
-                  {% if applications %}
-                    {% for app in applications %}
-                    <div class="d-flex flex-row comment-row mt-0">
+                  {% if available_jobs %}
+                    {% for job in available_jobs %}
+                    <div class="d-flex flex-row comment-row mt-0 border-bottom p-3">
                       <div class="comment-text w-100">
-                        <h6 class="font-medium">{{ app.job.title }}</h6>
-                        <span class="mb-2 d-block">Applied on: {{ app.applied_at|date:"M d, Y" }}</span>
+                        <h6 class="font-medium">{{ job.title }}</h6>
+                        <span class="mb-2 d-block text-muted small">{{ job.description|truncatewords:15 }}</span>
                         <div class="comment-footer">
-                          {% if app.status == 'pending' %}
-                            <span class="badge bg-warning">⏳ Pending</span>
-                          {% elif app.status == 'accepted' %}
-                            <span class="badge bg-success">✅ Accepted</span>
-                          {% elif app.status == 'rejected' %}
-                            <span class="badge bg-danger">❌ Rejected</span>
-                          {% elif app.status == 'completed' %}
-                            <span class="badge bg-info">🎉 Completed</span>
-                          {% endif %}
-                          <span class="badge bg-secondary">{{ app.amount }}</span>
+                          <span class="badge bg-warning">{{ job.budget }}</span>
+                          <span class="badge bg-info">{{ job.location }}</span>
+                          <span class="float-end">
+                            <a href="{% url 'job_detail' job.id %}" class="btn btn-sm btn-outline-primary">Apply Now</a>
+                          </span>
                         </div>
                       </div>
                     </div>
                     {% endfor %}
                   {% else %}
                     <div class="text-center p-4">
-                      <p>No applications yet.</p>
-                      <a href="{% url 'find_jobs' %}" class="btn btn-primary">Browse Jobs to Apply</a>
+                      <i class="mdi mdi-briefcase-off fs-1 text-muted"></i>
+                      <p class="mt-2">No new jobs available right now.</p>
+                      <p class="text-muted small">Check back later for new opportunities!</p>
                     </div>
                   {% endif %}
                 </div>
@@ -374,30 +391,30 @@
             <div class="col-12">
               <div class="card bg-light">
                 <div class="card-body">
-                  <h4 class="card-title">💡 Tips for Success</h4>
-                  <div class="row">
+                  <h4 class="card-title">💡 Tips for Success as a Housewife Freelancer</h4>
+                  <div class="row mt-3">
                     <div class="col-md-3">
                       <div class="text-center">
                         <i class="mdi mdi-account-check display-6 text-success"></i>
-                        <p>Complete your profile</p>
+                        <p class="mt-2"><strong>Complete your profile</strong><br><small class="text-muted">Add skills and experience</small></p>
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="text-center">
                         <i class="mdi mdi-clock display-6 text-info"></i>
-                        <p>Respond quickly to messages</p>
+                        <p class="mt-2"><strong>Respond quickly</strong><br><small class="text-muted">Reply to client messages promptly</small></p>
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="text-center">
                         <i class="mdi mdi-star display-6 text-warning"></i>
-                        <p>Deliver quality work</p>
+                        <p class="mt-2"><strong>Deliver quality work</strong><br><small class="text-muted">Get good ratings and reviews</small></p>
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="text-center">
                         <i class="mdi mdi-chart-line display-6 text-danger"></i>
-                        <p>Build your reputation</p>
+                        <p class="mt-2"><strong>Build your reputation</strong><br><small class="text-muted">More completed jobs = more trust</small></p>
                       </div>
                     </div>
                   </div>
@@ -410,7 +427,7 @@
 
         <!-- Footer -->
         <footer class="footer text-center">
-          © 2024 Freelancer House Wife Portal | Empowering women to achieve financial independence
+          © 2024 Freelancer House Wife Portal | Empowering women to achieve financial independence 💪
         </footer>
       </div>
     </div>

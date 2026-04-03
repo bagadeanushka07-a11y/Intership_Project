@@ -38,18 +38,18 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="{% url 'home' %}" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename"> <img src="{% static 'assets/img/icon.png' %}" style="height:500px;" /> Freelancer House Wife Portal</h1> 
+        <h1 class="sitename"> <img src="{% static 'assets/img/icon.png' %}" style="height:50px;" /> Freelancer House Wife Portal</h1> 
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="{% url 'home' %}" class="active">Home</a></li>
-          <li><a href="{% url 'about' %}">About Project</a></li>
-          <li><a href="services.html">Problem Statement</a></li>
-          <li><a href="services.html">Services</a></li>
+          <li><a href="{% url 'how_it_works' %}">How It Works</a></li>
+          <li><a href="{% url 'find_jobs' %}">Find Jobs</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
           <li><a href="{% url 'reg' %}"> <button type="button" class="btn btn-success">Register Now</button> </a></li>
           <li><a href="{% url 'login' %}">Login</a></li>
         </ul>

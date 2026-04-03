@@ -1,0 +1,261 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Post a Job - Freelancer House Wife Portal</title>
+  <meta name="description" content="Post a job to find skilled housewife freelancers for your requirements">
+  <meta name="keywords" content="post job, hire housewife, freelance work">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/icon.png' %}" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <style>
+    .form-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 60px 0;
+    }
+    .form-card {
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      padding: 40px;
+      margin-top: -40px;
+      background: white;
+    }
+    .form-label {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .form-control, .form-select {
+      border-radius: 10px;
+      padding: 12px 15px;
+      border: 1px solid #e0e0e0;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #e83e8c;
+      box-shadow: 0 0 0 0.2rem rgba(232, 62, 140, 0.25);
+    }
+    .submit-btn {
+      background: linear-gradient(135deg, #28a745, #20c997);
+      border: none;
+      padding: 12px 40px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 50px;
+    }
+    .tips-card {
+      background: #f8f9fa;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 20px;
+    }
+    .category-icon {
+      font-size: 32px;
+      margin-right: 10px;
+    }
+  </style>
+
+</head>
+
+<body class="index-page">
+
+  {% include 'header.html' %}
+
+  <main class="main">
+
+    <!-- Form Header -->
+    <div class="form-header">
+      <div class="container text-center">
+        <h1 class="display-5 fw-bold mb-3">Post a New Job</h1>
+        <p class="lead mb-0">Find the perfect housewife freelancer for your needs</p>
+      </div>
+    </div>
+
+    <!-- Post Job Form -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          
+          <!-- Form Column -->
+          <div class="col-lg-8 mx-auto">
+            <div class="form-card">
+
+              <!-- Messages -->
+              {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <i class="bi bi-check-circle"></i> {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endfor %}
+
+              <!-- Login Required Message -->
+              {% if not user.is_authenticated %}
+                <div class="alert alert-warning text-center">
+                  <i class="bi bi-person-plus"></i> Please <a href="{% url 'login' %}" class="alert-link">login</a> or 
+                  <a href="{% url 'reg' %}" class="alert-link">register as a client</a> to post a job.
+                </div>
+              {% elif user.userprofile.user_type != 'client' %}
+                <div class="alert alert-danger text-center">
+                  <i class="bi bi-exclamation-triangle"></i> Only clients can post jobs. 
+                  <a href="{% url 'dashboard' %}" class="alert-link">Go to your dashboard</a>
+                </div>
+              {% else %}
+
+              <!-- Job Posting Form -->
+              <form method="POST" action="{% url 'post_job' %}">
+                {% csrf_token %}
+
+                <!-- Job Title -->
+                <div class="mb-4">
+                  <label class="form-label">Job Title <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="title" placeholder="e.g., Need Cook for Daily Lunch" required>
+                  <small class="text-muted">A clear title helps freelancers understand the job quickly</small>
+                </div>
+
+                <!-- Category -->
+                <div class="mb-4">
+                  <label class="form-label">Service Category <span class="text-danger">*</span></label>
+                  <select class="form-select" name="category" required>
+                    <option value="">Select a category</option>
+                    <option value="cooking">🍳 Cooking</option>
+                    <option value="cleaning">🧹 Home Cleaning</option>
+                    <option value="tutoring">📚 Tutoring</option>
+                    <option value="beauty">💄 Beauty Services</option>
+                    <option value="childcare">👶 Childcare</option>
+                    <option value="craft">🎨 Craft & Handmade</option>
+                    <option value="baking">🎂 Baking</option>
+                    <option value="digital">💻 Digital Services</option>
+                  </select>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-4">
+                  <label class="form-label">Job Description <span class="text-danger">*</span></label>
+                  <textarea class="form-control" name="description" rows="6" placeholder="Describe the job in detail. Include requirements, expectations, working hours, etc." required></textarea>
+                  <small class="text-muted">Be specific about what you need. Include number of hours, days per week, etc.</small>
+                </div>
+
+                <!-- Budget -->
+                <div class="mb-4">
+                  <label class="form-label">Budget / Payment <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="budget" placeholder="e.g., ₹300-500/day or ₹5000/month" required>
+                  <small class="text-muted">Specify the payment amount and frequency (per day, per hour, per month, etc.)</small>
+                </div>
+
+                <!-- Location -->
+                <div class="mb-4">
+                  <label class="form-label">Location <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="location" placeholder="e.g., Andheri East, Mumbai" required>
+                  <small class="text-muted">Enter your area/city so freelancers nearby can apply</small>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center mt-4">
+                  <button type="submit" class="btn submit-btn text-white">
+                    <i class="bi bi-send"></i> Post Job Now
+                  </button>
+                </div>
+
+              </form>
+
+              {% endif %}
+
+            </div>
+
+            <!-- Tips Section -->
+            <div class="row mt-5">
+              <div class="col-12">
+                <h4 class="mb-4"><i class="bi bi-lightbulb"></i> Tips for Posting a Great Job</h4>
+              </div>
+              <div class="col-md-4">
+                <div class="tips-card">
+                  <i class="bi bi-pencil-square fs-2 text-primary"></i>
+                  <h6 class="mt-2">Be Specific</h6>
+                  <p class="small text-muted">Clearly describe the work, timing, and expectations to attract the right candidates.</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="tips-card">
+                  <i class="bi bi-cash-stack fs-2 text-success"></i>
+                  <h6 class="mt-2">Set Realistic Budget</h6>
+                  <p class="small text-muted">Research market rates and offer fair compensation for the work required.</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="tips-card">
+                  <i class="bi bi-chat-dots fs-2 text-info"></i>
+                  <h6 class="mt-2">Respond Quickly</h6>
+                  <p class="small text-muted">Check applications regularly and respond to interested freelancers promptly.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefits Section -->
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="alert alert-light text-center">
+                  <h5><i class="bi bi-star-fill text-warning"></i> Why Post on Our Platform?</h5>
+                  <p class="mb-0">✓ Free job posting • ✓ Access to verified housewife freelancers • ✓ Easy communication • ✓ Safe and secure</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  {% include 'footer.html' %}
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  </script>
+
+</body>
+
+</html>

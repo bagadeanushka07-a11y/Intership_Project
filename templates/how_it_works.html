@@ -1,0 +1,329 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>How It Works - Freelancer House Wife Portal</title>
+  <meta name="description" content="Learn how to find work or hire skilled housewives through our platform">
+  <meta name="keywords" content="how it works, housewife freelancer, find work, hire">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/icon.png' %}" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <style>
+    .step-card {
+      transition: transform 0.3s ease;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    .step-card:hover {
+      transform: translateY(-10px);
+    }
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #e83e8c, #fd7e14);
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+    }
+    .step-icon {
+      font-size: 48px;
+      color: #e83e8c;
+      margin-bottom: 20px;
+    }
+    .testimonial-card {
+      background: #f8f9fa;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 15px;
+    }
+    .stat-number {
+      font-size: 42px;
+      font-weight: bold;
+      color: #e83e8c;
+    }
+  </style>
+
+</head>
+
+<body class="index-page">
+
+  {% include 'header.html' %}
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" style="background-image: url({% static 'assets/img/page-title-bg.jpg' %});">
+      <div class="container position-relative">
+        <h1>How It Works</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li class="current">How It Works</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+      <div class="container text-center text-white py-5">
+        <h1 class="display-4 fw-bold mb-4">Simple 4-Step Process</h1>
+        <p class="lead mb-0">Get started with Freelancer House Wife Portal in just a few minutes</p>
+      </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section id="steps" class="py-5">
+      <div class="container">
+        <div class="row g-4">
+
+          <!-- Step 1 -->
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="step-card text-center p-4 h-100 shadow-sm bg-white">
+              <div class="step-number">1</div>
+              <i class="bi bi-person-plus step-icon"></i>
+              <h3 class="h4 mb-3">Create Account</h3>
+              <p class="text-muted">Sign up as a Housewife Freelancer or Client. It's free and takes less than 2 minutes.</p>
+              <a href="{% url 'reg' %}" class="btn btn-sm btn-outline-primary mt-3">Register Now →</a>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="step-card text-center p-4 h-100 shadow-sm bg-white">
+              <div class="step-number">2</div>
+              <i class="bi bi-file-post step-icon"></i>
+              <h3 class="h4 mb-3">Post or Find Jobs</h3>
+              <p class="text-muted">Clients post job requirements. Housewives browse and apply for suitable jobs.</p>
+              <a href="{% url 'find_jobs' %}" class="btn btn-sm btn-outline-primary mt-3">Browse Jobs →</a>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="step-card text-center p-4 h-100 shadow-sm bg-white">
+              <div class="step-number">3</div>
+              <i class="bi bi-chat-dots step-icon"></i>
+              <h3 class="h4 mb-3">Connect & Agree</h3>
+              <p class="text-muted">Discuss job details, negotiate price, and finalize the work agreement.</p>
+              <button class="btn btn-sm btn-outline-primary mt-3" disabled>Start Chatting →</button>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="step-card text-center p-4 h-100 shadow-sm bg-white">
+              <div class="step-number">4</div>
+              <i class="bi bi-star step-icon"></i>
+              <h3 class="h4 mb-3">Complete & Rate</h3>
+              <p class="text-muted">Complete the work, get paid, and leave ratings to build trust.</p>
+              <button class="btn btn-sm btn-outline-primary mt-3" disabled>Leave Review →</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="row text-center g-4">
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-number">500+</div>
+            <p class="text-muted">Active Users</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-number">1000+</div>
+            <p class="text-muted">Jobs Completed</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-number">50+</div>
+            <p class="text-muted">Cities Covered</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-number">4.8★</div>
+            <p class="text-muted">Average Rating</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- For Housewives Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6" data-aos="fade-right">
+            <img src="{% static 'assets/img/housewife-working.jpg' %}" alt="Housewife working" class="img-fluid rounded-4 shadow">
+          </div>
+          <div class="col-lg-6" data-aos="fade-left">
+            <h2 class="display-6 fw-bold mb-4">For Housewife Freelancers</h2>
+            <div class="mb-3">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>
+              <strong>Earn from home</strong> - Use your skills to earn income
+            </div>
+            <div class="mb-3">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>
+              <strong>Flexible hours</strong> - Work when it suits you
+            </div>
+            <div class="mb-3">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>
+              <strong>Showcase your skills</strong> - Cooking, Cleaning, Tutoring & more
+            </div>
+            <div class="mb-3">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>
+              <strong>Build your reputation</strong> - Get ratings and reviews
+            </div>
+            <a href="{% url 'reg' %}" class="btn btn-primary btn-lg mt-3">Register as Housewife →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- For Clients Section -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+          <div class="col-lg-6" data-aos="fade-left">
+            <img src="{% static 'assets/img/client-hiring.jpg' %}" alt="Client hiring" class="img-fluid rounded-4 shadow">
+          </div>
+          <div class="col-lg-6" data-aos="fade-right">
+            <h2 class="display-6 fw-bold mb-4">For Clients</h2>
+            <div class="mb-3">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>
+              <strong>Find trusted professionals</strong> - Verified housewife freelancers
+            </div>
+            <div class="mb-3">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>
+              <strong>Post jobs for free</strong> - No hidden charges
+            </div>
+            <div class="mb-3">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>
+              <strong>Compare quotes</strong> - Get multiple bids before hiring
+            </div>
+            <div class="mb-3">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>
+              <strong>Quality service guaranteed</strong> - Rate after completion
+            </div>
+            <a href="{% url 'reg' %}" class="btn btn-primary btn-lg mt-3">Register as Client →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="display-6 fw-bold">Frequently Asked Questions</h2>
+          <p class="text-muted">Got questions? We've got answers</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <h5><i class="bi bi-question-circle text-primary me-2"></i> Is registration free?</h5>
+                <p class="text-muted">Yes! Registration is completely free for both housewives and clients.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <h5><i class="bi bi-question-circle text-primary me-2"></i> How do I get paid?</h5>
+                <p class="text-muted">Payments are made directly between client and freelancer as per agreement.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <h5><i class="bi bi-question-circle text-primary me-2"></i> Is my information safe?</h5>
+                <p class="text-muted">Yes, we take privacy seriously. Your data is protected and never shared.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <h5><i class="bi bi-question-circle text-primary me-2"></i> Can I change my user type?</h5>
+                <p class="text-muted">Currently, one account = one user type. Contact support for assistance.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+      <div class="container text-center text-white py-5">
+        <h2 class="display-6 fw-bold mb-4">Ready to Get Started?</h2>
+        <p class="lead mb-4">Join thousands of housewives earning from home and clients finding quality services</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <a href="{% url 'reg' %}" class="btn btn-light btn-lg px-5">Register Now</a>
+          <a href="{% url 'find_jobs' %}" class="btn btn-outline-light btn-lg px-5">Browse Jobs</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  {% include 'footer.html' %}
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,315 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Find Jobs - Freelancer House Wife Portal</title>
+  <meta name="description" content="Browse and apply for jobs posted by clients. Find work as a housewife freelancer">
+  <meta name="keywords" content="jobs, housewife jobs, freelance work, find work">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/icon.png' %}" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <style>
+    .job-card {
+      transition: transform 0.3s ease;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    .job-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .category-badge {
+      background: #e83e8c;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+    .budget-badge {
+      background: #28a745;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+    .filter-sidebar {
+      background: #f8f9fa;
+      border-radius: 15px;
+      padding: 20px;
+    }
+    .search-box {
+      border-radius: 50px;
+      padding: 12px 20px;
+      border: 2px solid #e0e0e0;
+    }
+    .search-box:focus {
+      border-color: #e83e8c;
+      outline: none;
+    }
+  </style>
+
+</head>
+
+<body class="index-page">
+
+  {% include 'header.html' %}
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" style="background-image: url({% static 'assets/img/page-title-bg.jpg' %});">
+      <div class="container position-relative">
+        <h1>Find Jobs</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li class="current">Find Jobs</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Jobs Section -->
+    <section class="py-5">
+      <div class="container">
+
+        <!-- Search and Filter Row -->
+        <div class="row mb-5">
+          <div class="col-lg-8 mx-auto">
+            <form method="GET" action="{% url 'find_jobs' %}">
+              <div class="input-group">
+                <input type="text" name="search" class="form-control search-box" placeholder="Search jobs by title, description, or location..." value="{{ request.GET.search }}">
+                <button class="btn btn-primary px-4" type="submit" style="border-radius: 50px; margin-left: 10px;">
+                  <i class="bi bi-search"></i> Search
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          
+          <!-- Sidebar Filters -->
+          <div class="col-lg-3 mb-4">
+            <div class="filter-sidebar">
+              <h5 class="mb-3"><i class="bi bi-funnel"></i> Filter by Category</h5>
+              <form method="GET" action="{% url 'find_jobs' %}">
+                {% if request.GET.search %}
+                  <input type="hidden" name="search" value="{{ request.GET.search }}">
+                {% endif %}
+                <div class="mb-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="" id="all" {% if not request.GET.category %}checked{% endif %} onchange="this.form.submit()">
+                    <label class="form-check-label" for="all">All Categories</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="cooking" id="cooking" {% if request.GET.category == 'cooking' %}checked{% endif %} onchange="this.form.submit()">
+                    <label class="form-check-label" for="cooking">🍳 Cooking</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="cleaning" id="cleaning" {% if request.GET.category == 'cleaning' %}checked{% endif %} onchange="this.form.submit()">
+                    <label class="form-check-label" for="cleaning">🧹 Home Cleaning</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="tutoring" id="tutoring" {% if request.GET.category == 'tutoring' %}checked{% endif %} onchange="this.form.submit()">
+                    <label class="form-check-label" for="tutoring">📚 Tutoring</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="beauty" id="beauty" {% if request.GET.category == 'beauty' %}checked{% endif %} onchange="this.form.submit()">
+                    <label class="form-check-label" for="beauty">💄 Beauty Services</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="childcare" id="childcare" {% if request.GET.category == 'childcare' %}checked{% endif %} onchange="this.form.submit()">
+                    <label class="form-check-label" for="childcare">👶 Childcare</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="craft" id="craft" {% if request.GET.category == 'craft' %}checked{% endif %} onchange="this.form.submit()">
+                    <label class="form-check-label" for="craft">🎨 Craft & Handmade</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="baking" id="baking" {% if request.GET.category == 'baking' %}checked{% endif %} onchange="this.form.submit()">
+                    <label class="form-check-label" for="baking">🎂 Baking</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="digital" id="digital" {% if request.GET.category == 'digital' %}checked{% endif %} onchange="this.form.submit()">
+                    <label class="form-check-label" for="digital">💻 Digital Services</label>
+                  </div>
+                </div>
+              </form>
+
+              <hr>
+
+              <div class="text-center mt-3">
+                <a href="{% url 'find_jobs' %}" class="btn btn-sm btn-outline-secondary">Clear All Filters</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Job Listings -->
+          <div class="col-lg-9">
+            
+            <!-- Results Count -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h5><i class="bi bi-briefcase"></i> {{ jobs|length }} Jobs Available</h5>
+              {% if user.is_authenticated and user.userprofile.user_type == 'client' %}
+                <a href="{% url 'post_job' %}" class="btn btn-success btn-sm">
+                  <i class="bi bi-plus-circle"></i> Post a Job
+                </a>
+              {% endif %}
+            </div>
+
+            <!-- Messages -->
+            {% for message in messages %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+
+            <!-- No Jobs Found -->
+            {% if not jobs %}
+              <div class="text-center py-5">
+                <i class="bi bi-inbox" style="font-size: 64px; color: #ccc;"></i>
+                <h4 class="mt-3">No jobs found</h4>
+                <p class="text-muted">Try changing your search criteria or check back later for new opportunities.</p>
+                <a href="{% url 'find_jobs' %}" class="btn btn-primary">View All Jobs</a>
+              </div>
+            {% endif %}
+
+            <!-- Job Cards -->
+            <div class="row g-4">
+              {% for job in jobs %}
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:100 }}">
+                  <div class="job-card card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                      <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="category-badge">
+                          {% if job.category == 'cooking' %}🍳 Cooking
+                          {% elif job.category == 'cleaning' %}🧹 Cleaning
+                          {% elif job.category == 'tutoring' %}📚 Tutoring
+                          {% elif job.category == 'beauty' %}💄 Beauty
+                          {% elif job.category == 'childcare' %}👶 Childcare
+                          {% elif job.category == 'craft' %}🎨 Craft
+                          {% elif job.category == 'baking' %}🎂 Baking
+                          {% elif job.category == 'digital' %}💻 Digital
+                          {% else %}{{ job.category }}
+                          {% endif %}
+                        </span>
+                        <span class="budget-badge">{{ job.budget }}</span>
+                      </div>
+                      
+                      <h5 class="card-title mb-2">{{ job.title }}</h5>
+                      <p class="card-text text-muted small">{{ job.description|truncatewords:20 }}</p>
+                      
+                      <div class="mb-3">
+                        <span class="text-muted small">
+                          <i class="bi bi-geo-alt"></i> {{ job.location }}
+                        </span>
+                      </div>
+                      
+                      <div class="d-flex justify-content-between align-items-center mt-3">
+                        <small class="text-muted">
+                          <i class="bi bi-clock"></i> Posted: {{ job.created_at|date:"M d, Y" }}
+                        </small>
+                        <a href="{% url 'job_detail' job.id %}" class="btn btn-sm btn-outline-primary">
+                          View Details <i class="bi bi-arrow-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+            <!-- Pagination Placeholder -->
+            {% if jobs|length > 10 %}
+              <div class="text-center mt-5">
+                <nav>
+                  <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                      <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">Next</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            {% endif %}
+
+          </div>
+        </div>
+
+        <!-- Not Logged In CTA -->
+        {% if not user.is_authenticated %}
+          <div class="row mt-5">
+            <div class="col-12">
+              <div class="alert alert-info text-center">
+                <h5><i class="bi bi-person-plus"></i> Want to apply for jobs?</h5>
+                <p><a href="{% url 'reg' %}" class="alert-link">Register as a Housewife</a> or <a href="{% url 'login' %}" class="alert-link">Login</a> to your account to apply for jobs.</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+    </section>
+
+  </main>
+
+  {% include 'footer.html' %}
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  </script>
+
+</body>
+
+</html>

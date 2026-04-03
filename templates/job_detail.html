@@ -1,0 +1,277 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>{{ job.title }} - Freelancer House Wife Portal</title>
+  <meta name="description" content="{{ job.description|truncatewords:30 }}">
+  <meta name="keywords" content="job, housewife, freelancer, {{ job.category }}">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/icon.png' %}" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <style>
+    .job-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 60px 0;
+    }
+    .detail-card {
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      padding: 30px;
+      margin-top: -40px;
+      background: white;
+    }
+    .info-box {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .apply-btn {
+      background: linear-gradient(135deg, #28a745, #20c997);
+      border: none;
+      padding: 12px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 50px;
+    }
+    .apply-btn:disabled {
+      background: #6c757d;
+      cursor: not-allowed;
+    }
+    .back-btn {
+      border-radius: 50px;
+      padding: 10px 25px;
+    }
+    .category-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+  </style>
+
+</head>
+
+<body class="index-page">
+
+  {% include 'header.html' %}
+
+  <main class="main">
+
+    <!-- Job Header -->
+    <div class="job-header">
+      <div class="container text-center">
+        <h1 class="display-5 fw-bold mb-3">{{ job.title }}</h1>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <span class="badge bg-light text-dark px-3 py-2">
+            <i class="bi bi-tag"></i> 
+            {% if job.category == 'cooking' %}🍳 Cooking
+            {% elif job.category == 'cleaning' %}🧹 Cleaning
+            {% elif job.category == 'tutoring' %}📚 Tutoring
+            {% elif job.category == 'beauty' %}💄 Beauty
+            {% elif job.category == 'childcare' %}👶 Childcare
+            {% elif job.category == 'craft' %}🎨 Craft
+            {% elif job.category == 'baking' %}🎂 Baking
+            {% elif job.category == 'digital' %}💻 Digital
+            {% else %}{{ job.category }}
+            {% endif %}
+          </span>
+          <span class="badge bg-warning text-dark px-3 py-2">
+            <i class="bi bi-cash"></i> {{ job.budget }}
+          </span>
+          <span class="badge bg-info text-dark px-3 py-2">
+            <i class="bi bi-geo-alt"></i> {{ job.location }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job Details Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          
+          <!-- Main Content -->
+          <div class="col-lg-8 mx-auto">
+            <div class="detail-card">
+              
+              <!-- Messages -->
+              {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <i class="bi bi-check-circle"></i> {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endfor %}
+
+              <!-- Job Description -->
+              <h4 class="mb-3"><i class="bi bi-file-text"></i> Job Description</h4>
+              <p class="text-muted mb-4">{{ job.description|linebreaks }}</p>
+
+              <!-- Job Details Grid -->
+              <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                  <div class="info-box">
+                    <i class="bi bi-cash-stack fs-2 text-success"></i>
+                    <h6 class="mt-2 mb-1">Budget / Payment</h6>
+                    <p class="text-muted mb-0">{{ job.budget }}</p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="info-box">
+                    <i class="bi bi-geo-alt fs-2 text-danger"></i>
+                    <h6 class="mt-2 mb-1">Location</h6>
+                    <p class="text-muted mb-0">{{ job.location }}</p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="info-box">
+                    <i class="bi bi-calendar fs-2 text-primary"></i>
+                    <h6 class="mt-2 mb-1">Posted On</h6>
+                    <p class="text-muted mb-0">{{ job.created_at|date:"F d, Y" }}</p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="info-box">
+                    <i class="bi bi-clock-history fs-2 text-warning"></i>
+                    <h6 class="mt-2 mb-1">Status</h6>
+                    <p class="text-muted mb-0">
+                      {% if job.is_active %}
+                        <span class="badge bg-success">Active</span>
+                      {% else %}
+                        <span class="badge bg-danger">Closed</span>
+                      {% endif %}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Apply Section -->
+              <div class="text-center mt-4 pt-3 border-top">
+                
+                {% if user.is_authenticated %}
+                  {% if user.userprofile.user_type == 'housewife' %}
+                    {% if has_applied %}
+                      <div class="alert alert-info">
+                        <i class="bi bi-check-circle"></i> You have already applied for this job. The client will review your application.
+                      </div>
+                    {% elif job.is_active %}
+                      <a href="{% url 'apply_for_job' job.id %}" class="btn apply-btn text-white">
+                        <i class="bi bi-send"></i> Apply for this Job
+                      </a>
+                      <p class="text-muted small mt-3">
+                        <i class="bi bi-info-circle"></i> Your profile will be shared with the client
+                      </p>
+                    {% else %}
+                      <div class="alert alert-secondary">
+                        <i class="bi bi-lock"></i> This job is no longer accepting applications
+                      </div>
+                    {% endif %}
+                  {% elif user.userprofile.user_type == 'client' %}
+                    <div class="alert alert-secondary">
+                      <i class="bi bi-briefcase"></i> You posted this job. 
+                      <a href="#" class="alert-link">View applications</a> from housewives.
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="alert alert-warning">
+                    <i class="bi bi-person-plus"></i> Please <a href="{% url 'login' %}" class="alert-link">login</a> or 
+                    <a href="{% url 'reg' %}" class="alert-link">register as a housewife</a> to apply for this job.
+                  </div>
+                {% endif %}
+
+                <!-- Back Button -->
+                <div class="mt-4">
+                  <a href="{% url 'find_jobs' %}" class="btn btn-outline-secondary back-btn">
+                    <i class="bi bi-arrow-left"></i> Back to Jobs
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Similar Jobs Section -->
+            <div class="mt-5">
+              <h4 class="mb-4"><i class="bi bi-briefcase"></i> Similar Jobs You Might Like</h4>
+              <div class="row g-4">
+                <!-- You can add similar jobs here dynamically -->
+                <div class="col-md-6">
+                  <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                      <h6 class="card-title">Looking for similar opportunities?</h6>
+                      <p class="small text-muted">Browse more jobs in your area</p>
+                      <a href="{% url 'find_jobs' %}" class="btn btn-sm btn-primary">Browse All Jobs</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                      <h6 class="card-title">Don't see what you're looking for?</h6>
+                      <p class="small text-muted">Create a job alert to get notified</p>
+                      <button class="btn btn-sm btn-outline-secondary" disabled>Create Alert</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  {% include 'footer.html' %}
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  </script>
+
+</body>
+
+</html>
